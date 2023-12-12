@@ -152,15 +152,16 @@ def decrypt_content(encrypted_content, key):
 
     display_decrypted_content(matrix_product(content_matrix, decode_key))
 
-#try:
-args = sys.argv
-if len(args) != 4:
-    exit(84)
-if args[3] == "0":
-    encrypt_message(args[1], args[2])
-elif args[3] == "1":
-    decrypt_content(args[1], args[2])
-else:
-    exit(84)
-#except:
-#    print("Unknown error has occured")
+try:
+    args = sys.argv
+    if len(args) != 4:
+        exit(84)
+    if args[3] == "0":
+        encrypt_message(args[1], args[2])
+    elif args[3] == "1":
+        decrypt_content(args[1], args[2])
+    else:
+        exit(84)
+    exit(0)
+except:
+    print("Unknown error has occured")
