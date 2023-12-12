@@ -1,0 +1,2 @@
+Any message size can be given to the program and will be handled properly.
+The program handles matrix of any size.
