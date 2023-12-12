@@ -161,7 +161,9 @@ try:
     elif args[3] == "1":
         decrypt_content(args[1], args[2])
     else:
-        exit(84)
-    exit(0)
+        assert()
 except:
     print("Unknown error has occured")
+    exit(84)
+
+exit(0)
