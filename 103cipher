@@ -135,9 +135,11 @@ def format_encrypted_content(encrypted_content, key_size):
     return num_matrix
     
 def display_decrypted_content(decrypted_content):
+    print("Decrypted message:")
     for row in decrypted_content:
         for element in row:
-            print(chr(round(element)), end="")
+            if round(element) != 0:
+                print(chr(round(element)), end="")
     print("")
 
 def encrypt_message(message, key):
