@@ -155,6 +155,8 @@ def encrypt_message(message, key):
 
 def decrypt_content(encrypted_content, key):
     key_matrix = get_key_matrix(key)
+    display_key_matrix(key_matrix)
+    print("")
     content_matrix = format_encrypted_content(encrypted_content, len(key_matrix))
     decode_key = inverse_key(get_cofactor_matrix(key_matrix), key_matrix)
 
