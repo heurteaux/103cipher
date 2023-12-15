@@ -66,13 +66,12 @@ def transpose_matrix(matrix):
     return new_matrix
 
 def get_determinant(matrix):
-    if not matrix or not matrix[0]:
-        return 0
     determinant = 0
     if (len(matrix) == 2):
         return (matrix[0][0] * matrix[1][1]) - (matrix[0][1] * matrix[1][0])
     if (len(matrix) == 1):
         return matrix[0][0]
+    
     sign = 1
     for i in range(len(matrix[0])):
         new_matrix = [row[:i] + row[i + 1:] for row in matrix[1:]]
@@ -95,14 +94,6 @@ def get_cofactor_matrix(matrix):
 def print_matrix(matrix):
     for element in matrix:
         print(element)
-
-def make_reversable(matrix):
-    while get_determinant(matrix) == 0:
-        for i in range(len(matrix)):
-            for j in range(len(matrix[i])):
-                if matrix[i][j] == 0:
-                    matrix[i][j] += 1
-    return matrix
 
 def inverse_key(cofactor_matrix, key_matrix):
     transposed = transpose_matrix(cofactor_matrix)
@@ -169,23 +160,20 @@ def decrypt_content(encrypted_content, key):
 
     display_decrypted_content(matrix_product(content_matrix, decode_key))
 
-args = sys.argv
-if (args[1] == "-h"):
-        print("USAGE\n\t./103cipher message key flag\n\n"
-              "DESCRIPTION\n\tmessage\ta message, made of ASCII characters\n\tkey\tthe encryption key, made of ASCII characters"
-              "\n\tflag\t0 for the message to be encrypted, 1 to be decrypted")
-        exit(0)
 
-# try:
-if len(args) != 4:
-    assert()
-if args[3] == "0":
-    encrypt_message(args[1], args[2])
-elif args[3] == "1":
-    decrypt_content(args[1], args[2])
-else:
-    assert()
-# except:
-    # print("Unknown error occured")
-    # exit(84)
+try:
+    args = sys.argv
+    if len(args) != 4:
+        exit(84)
+    if args[3] == "0":
+        encrypt_message(args[1], args[2])
+    elif args[3] == "1":
+        decrypt_content(args[1], args[2])
+    else:
+        assert()
+except:
+    print("Unknown error occured")
+    exit(84)
+
+
 exit(0)
