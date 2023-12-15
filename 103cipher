@@ -160,20 +160,23 @@ def decrypt_content(encrypted_content, key):
 
     display_decrypted_content(matrix_product(content_matrix, decode_key))
 
+args = sys.argv
+if (args[1] == "-h"):
+        print("USAGE\n\t./103cipher message key flag\n\nDESCRIPTION\n\tmessage\ta message, made of ASCII characters\n\tkey\tthe encryption key, made of ASCII characters\n\tflag\t0 for the message to be encrypted, 1 to be decrypted")
+        exit(0)
 
-try:
-    args = sys.argv
-    if len(args) != 4:
-        exit(84)
-    if args[3] == "0":
-        encrypt_message(args[1], args[2])
-    elif args[3] == "1":
-        decrypt_content(args[1], args[2])
-    else:
-        assert()
-except:
-    print("Unknown error occured")
-    exit(84)
+# try:
+if len(args) != 4:
+    assert()
+if args[3] == "0":
+    encrypt_message(args[1], args[2])
+elif args[3] == "1":
+    decrypt_content(args[1], args[2])
+else:
+    assert()
+# except:
+#     print("Unknown error occured")
+#     exit(84)
 
 
 exit(0)
