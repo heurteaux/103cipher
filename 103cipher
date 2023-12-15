@@ -66,8 +66,6 @@ def transpose_matrix(matrix):
     return new_matrix
 
 def get_determinant(matrix):
-    if not matrix or not matrix[0]:
-        return 0
     determinant = 0
     if (len(matrix) == 2):
         return (matrix[0][0] * matrix[1][1]) - (matrix[0][1] * matrix[1][0])
@@ -148,40 +146,21 @@ def display_decrypted_content(decrypted_content):
             if round(element) != 0:
                 print(chr(round(element)), end="")
     print("")
+
 def encrypt_message(message, key):
-    if len(key) == 1:
-        key_value = ord(key)
-        print("Encrypted message:")
-        for char in message:
-            encrypted_char = (ord(char) * key_value) % 256
-            print(encrypted_char, end=" ")
-        print("")
-    else:
-        key_matrix = get_key_matrix(key)
-        display_key_matrix(key_matrix)
-        content_matrix = get_content_matrix(message, key_matrix)
-        display_encrypted_message(matrix_product(content_matrix, key_matrix))
+    key_matrix = get_key_matrix(key)
+    display_key_matrix(key_matrix)
+    content_matrix = get_content_matrix(message, key_matrix)
+    display_encrypted_message(matrix_product(content_matrix, key_matrix))
 
 def decrypt_content(encrypted_content, key):
-    if len(key) == 1:
-        key_value = ord(key)
-        if key_value == 0:
-            print("Decryption error: Key cannot be zero")
-            return
-        inverse_key_value = pow(key_value, -1, 256)
-        print("Decrypted message:")
-        for num in map(int, encrypted_content.split()):
-            decrypted_char = (num * inverse_key_value) % 256
-            print(chr(decrypted_char), end="")
-        print("")
-    else:
-        key_matrix = get_key_matrix(key)
-        display_key_matrix(key_matrix)
-        print("")
-        content_matrix = format_encrypted_content(encrypted_content, len(key_matrix))
-        decode_key = inverse_key(get_cofactor_matrix(key_matrix), key_matrix)
-        display_decrypted_content(matrix_product(content_matrix, decode_key))
+    key_matrix = get_key_matrix(key)
+    display_key_matrix(key_matrix)
+    print("")
+    content_matrix = format_encrypted_content(encrypted_content, len(key_matrix))
+    decode_key = inverse_key(get_cofactor_matrix(key_matrix), key_matrix)
 
+    display_decrypted_content(matrix_product(content_matrix, decode_key))
 
 
 try:
