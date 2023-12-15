@@ -105,9 +105,14 @@ def inverse_key(cofactor_matrix, key_matrix):
 
 def display_key_matrix(key):
     print("Key matrix:")
-    for row in key:
-        print("{}\t{}\t{}".format(row[0], row[1], row[2]))
-
+    for i in range(len(key)):
+        for j in range(len(key[i])):
+            if not (j == len(key[i]) - 1):
+                print(key[i][j], end="\t")
+            else:
+                print(key[i][j], end="")
+        print("")
+            
 def display_encrypted_message(message):
     print("\nEncrypted message:")
     for i in range(len(message)):
@@ -155,6 +160,7 @@ def decrypt_content(encrypted_content, key):
 
     display_decrypted_content(matrix_product(content_matrix, decode_key))
 
+
 try:
     args = sys.argv
     if len(args) != 4:
@@ -166,7 +172,8 @@ try:
     else:
         assert()
 except:
-    print("Unknown error has occured")
+    print("Unknown error occured")
     exit(84)
+
 
 exit(0)
